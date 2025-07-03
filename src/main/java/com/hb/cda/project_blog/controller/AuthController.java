@@ -2,7 +2,9 @@ package com.hb.cda.project_blog.controller;
 
 import com.hb.cda.project_blog.entity.User;
 import com.hb.cda.project_blog.repository.UserRepository;
+import com.hb.cda.project_blog.security.LoginFormDto;
 import com.hb.cda.project_blog.security.RegisterFormDto;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class AuthController {
@@ -53,8 +57,15 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String displayLogin(Model model) {
-        model.addAttribute("user", new User());
+    public String displayLogin() {
         return "login-form ";
     }
+
+//    @PostMapping("/login")
+//    public String processLogin(@Valid LoginFormDto loginFormDto, BindingResult bindingResult, Model model) {
+//        model.addAttribute("loginFormDto", new LoginFormDto());
+//
+//        Optional<User> optUser=  userRepository.findByUsername(loginFormDto.getUsername()).orElseThrow(()->new EntityNotFoundException("User not found");
+//        optUser.filter(u->u.getPassword().equals(loginFormDto.getPassword()))
+//    }
 }

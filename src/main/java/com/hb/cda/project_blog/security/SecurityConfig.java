@@ -13,6 +13,7 @@ public class SecurityConfig {
     SecurityFilterChain accessControl(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(req->req
                 .anyRequest().permitAll());
+        http.formLogin(login -> login.loginPage("/login"));
 
         return http.build();
     }
