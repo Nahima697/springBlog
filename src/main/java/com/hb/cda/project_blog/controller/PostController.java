@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -38,6 +39,7 @@ public class PostController {
                 post.setUser(user);
                 post.setTitle(addPostDTO.getTitle());
                 post.setContent(addPostDTO.getContent());
+                post.setPostedAt(LocalDate.now());
                 postRepository.save(post);
                 model.addAttribute("addPostDTO", new AddPostDTO());
             } else {
