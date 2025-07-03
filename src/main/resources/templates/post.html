@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post</title>
+</head>
+<body>
+<ul th:if="${errors}">
+    <li th:each="error : ${errors}">[[${error.field}]] [[${error.defaultMessage}]]</li>
+</ul>
+<form th:action="@{/post/add}" method="post" th:object="${addPostDTO}">
+    <label>Title
+        <input type="text" th:field="*{title}">
+    </label>
+    <label>Content
+        <textarea  th:field="*{content}"></textarea>
+    </label>
+    <button>Add post</button>
+</form>
+<ul th:each="post : ${posts}">
+    <li >[[${post.title}]] </li>
+    <li> [[${post.content}]]</li>
+</ul>
